@@ -1,0 +1,33 @@
+{
+  "name": "web",
+  "description": "A Web project",
+  "author": "499289113@qq.com",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot --env.dev",
+    "build": "rimraf dist && webpack -p --progress --hide-modules"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.27.0",
+    "extract-text-webpack-plugin": "2.1.2",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^2.24.1",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "postcss-loader": "^1.3.3",
+    "rimraf": "^2.5.4",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
