@@ -3,15 +3,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const url = require('url');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const publicPath = '';
 
 module.exports = (options = {}) => ({
     entry: {
         vendor: './src/vendor',
         index: './src/main.js'
-    },
-    externals: {
-        "Swiper": "Swiper"
     },
     output: {
         path: resolve(__dirname, 'dist'),
@@ -39,14 +37,39 @@ module.exports = (options = {}) => ({
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendor', 'manifest']
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     names: ['vendor', 'manifest']
+        // }),
         new ExtractTextPlugin("static/css/styles.css"),
         new HtmlWebpackPlugin({
             template: 'src/index.html'
         })
     ],
+    optimization: {
+        splitChunks: {
+            chunks:'all'
+            // name: 'vendor',
+            // chunks: 'initial',
+            // minChunks: 2
+        },
+        minimizer: [
+            new UglifyJsPlugin({
+                /* your config */
+                uglifyOptions:{
+                    compress:true,
+                    ecma:6,
+                    output:{
+                        comments:false,
+                    },
+                    compress:{
+                        dead_code:true,
+                        drop_console:true,
+                    }
+                },
+                sourceMap:false,
+            })
+        ]
+    },
     resolve: {
         alias: {
             '~': resolve(__dirname, 'src'),

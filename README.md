@@ -1,4 +1,4 @@
-## webpack 简单配置
+## webpack@4.x 简单配置
 
 ``` bash
 yarn
